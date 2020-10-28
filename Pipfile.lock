@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1a6617e2b5daaaca116ce36a3e7b42c0a4d61ef9fb2db8a35959de7069532025"
+            "sha256": "f45cacf0b95cac7a1e41618e6bc13292c1614d7f9a61f5f2d85afa71b034b907"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,14 +16,43 @@
         ]
     },
     "default": {
-        "pynput": {
+        "altgraph": {
             "hashes": [
-                "sha256:452e1f23ed1c2e85e61b2daedc8b6a5481a696b1ed1b98ef0ab164038a104adf",
-                "sha256:5a5598bfb14322eff980ac6ca820635fce9028faa4f64a8e1581243aaf6785ee",
-                "sha256:b2b96cec8411a940a7f73da6965f13927d03d46fb5105c5bc63ed04f29b2b8f0"
+                "sha256:1f05a47122542f97028caf78775a095fbe6a2699b5089de8477eb583167d69aa",
+                "sha256:c623e5f3408ca61d4016f23a681b9adb100802ca3e3da5e718915a9e4052cebe"
+            ],
+            "version": "==0.17"
+        },
+        "macholib": {
+            "hashes": [
+                "sha256:0c436bc847e7b1d9bda0560351bf76d7caf930fb585a828d13608839ef42c432",
+                "sha256:c500f02867515e6c60a27875b408920d18332ddf96b4035ef03beddd782d4281"
+            ],
+            "markers": "sys_platform == 'darwin'",
+            "version": "==1.14"
+        },
+        "pyinstaller": {
+            "hashes": [
+                "sha256:970beb07115761d5e4ec317c1351b712fd90ae7f23994db914c633281f99bab0"
             ],
             "index": "pypi",
-            "version": "==1.7.1"
+            "version": "==4.0"
+        },
+        "pyinstaller-hooks-contrib": {
+            "hashes": [
+                "sha256:a5fd45a920012802e3f2089e1d3501ef2f49265dfea8fc46c3310f18e3326c91",
+                "sha256:c382f3ac1a42b45cfecd581475c36db77da90e479b2f5bcb6d840d21fa545114"
+            ],
+            "version": "==2020.9"
+        },
+        "pynput": {
+            "hashes": [
+                "sha256:42d6d58abe401a4c98ea04e443e61f74b6b0f97672f42042f566c68700ad0c65",
+                "sha256:68c1863d6a1520b44b6a915e866cbfa1b8d127aef9289f25183c93e28ee5049a",
+                "sha256:dffcf42299aa25248d1a508b14f988b3a55aad8afbf42dfa3a8f259cd96bb15b"
+            ],
+            "index": "pypi",
+            "version": "==1.6.8"
         },
         "pyobjc-core": {
             "hashes": [
