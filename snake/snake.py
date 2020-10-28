@@ -18,10 +18,16 @@ from collections import deque
 from itertools import product
 import time
 import random
+import curses
 
 OPair = Tuple[int, int]
 
-KEYMAP = {'':'up', '':'down', '':'left', '':'right'}
+KEYMAP = {
+    keyboard.Key.up:'up',
+    keyboard.Key.down:'down',
+    keyboard.Key.left:'left',
+    keyboard.Key.right:'right',
+}
 
 class Snake:
     """Class info...
@@ -29,16 +35,19 @@ class Snake:
     More class info...
 
     Attributes:
-        size (Tuple[int, int]):
+        size (OPair):
         growth (int):
         coil (int):
-        head (Tuple[int, int]):
+        head (OPair):
         tail (collections.Deque):
-        food (Tuple[int, int]):
+        food (OPair):
         score (int):
-
+        window (curses.window):
+        win_size (OPair):
+        to_remove (List[OPair]):
     """
-    def __init__(self, size: OPair, growth: int) -> None:
+    def __init__(self, size: OPair, growth: int, window: curses.window
+    ) -> None:
         """Initializes the snake object.
 
         More function info...
@@ -48,6 +57,7 @@ class Snake:
             growth: Growth rate of the snake.
         """
         self.size = size
+        self.win_size = (size[1] + 2, size[0] + 2)
         self.growth = growth
         self.coil = 0
         self.head = (size[0]//2, size[1]//2)
@@ -56,28 +66,46 @@ class Snake:
                           ])
         self.food = (size[0]//2, 3*size[1]//4)
         self.score = 0
+        self.window = window
+        self.to_remove = []
 
-    def display(self) -> None:
+    def update_display(self, debug: bool = False) -> None:
         """Function info...
 
         More function info...
         """
-        outer = ''.join(['+', '-'*self.size[0], '+'])
-        inner = ''.join(['|', ' '*self.size[0], '|'])
+        if debug:
+            self.window.move(1, 1)
+            self.window.addstr('Head: ' + str(self.head))
 
-        score = str(self.score)
-        top = score.join([outer[:len(outer)//2],
-                          outer[len(outer)//2 + len(score):],
-                         ])
-        frame = [top, inner*self.size[1], outer]
+            self.window.move(2, 1)
+            self.window.addstr('Food: ' + str(self.food))
 
-        frame[len(frame) - self.food[1] - 1][self.food[0] + 1] = 'o'
-        frame[len(frame) - self.head[1] - 1][self.head[0] + 1] = 'O'
+            self.window.move(3, 1)
+            if self.collision():
+                self.window.addstr('Collision!')
+            else:
+                self.window.addstr(' '*10)
 
-        for x, y in self.tail:
-            frame[len(frame) - y - 1][x + 1] = '*'
+        self.window.move(0, self.win_size[1]//2)
+        self.window.addstr(str(self.score))
 
-        print(frame)
+        self.window.move(self.size[1] - self.food[1] - 1, self.food[0] + 1)
+        self.window.addch('o')
+
+        for x, y in self.to_remove:
+            self.window.move(self.size[1] - y - 1, x + 1)
+            self.window.addch(' ')
+
+        self.to_remove = []
+
+        self.window.move(self.size[1] - self.head[1] - 1, self.head[0] + 1)
+        self.window.addch('O')
+
+        self.window.move(self.size[1] - self.tail[0][1] - 1, self.tail[0][0] + 1)
+        self.window.addch('*')
+
+        self.window.refresh()
 
     def move(self, direction: str) -> None:
         """Function info...
@@ -90,7 +118,7 @@ class Snake:
         self.tail.appendleft(self.head)
 
         if self.coil <= 0:
-            self.tail.pop()
+            self.to_remove.append(self.tail.pop())
         else:
             self.coil -= 1
 
@@ -122,6 +150,7 @@ class Snake:
 
         if self.head == self.food:
             self.eat()
+            return True
 
         return False
 
@@ -148,28 +177,105 @@ class Snake:
                 inverse.append(x, y)
         return inverse
 
+class SnakeDisplay:
+    """Class info...
+
+    More Class info...
+
+    Attributes:
+        snake (Snake):
+        window (curses.window)
+        size (OPair):
+        growth (int):
+        win_size (OPair):
+    """
+    def __init__(self, size: OPair, growth: int) -> None:
+        """Function info:
+
+        More function info...
+
+        Args:
+            size:
+            growth:
+        """
+        self.win_size = (size[1] + 2, size[0] + 2)
+        self.size = size
+        self.growth = growth
+        self.window = None
+        self.snake = None
+
+    def __enter__(self) -> Snake:
+        """Function info...
+
+        More function info...
+
+        Returns:
+            
+        """
+        self.window = curses.initscr()
+        curses.noecho()
+        curses.cbreak()
+        curses.curs_set(0)
+        self.window.keypad(True)
+        self.window.clear()
+        self.init_display()
+        self.snake = Snake(self.size, self.growth, self.window)
+        return self.snake
+
+    def __exit__(self, type, value, traceback) -> None:
+        """Function info...
+
+        More function info...
+
+        Args:
+            type:
+            value:
+            traceback:
+        """
+        curses.nocbreak()
+        self.window.keypad(False)
+        curses.echo()
+        curses.endwin()
+
+    def init_display(self) -> None:
+        """Function info...
+
+        More function info...
+        """
+        outer = ''.join(['+', '-'*(self.win_size[1] - 2), '+'])
+        inner = ''.join(['|', ' '*(self.win_size[1] - 2), '|'])
+
+        self.window.addstr(0, 0, outer)
+        self.window.addstr(self.win_size[0] - 1, 0, outer)
+
+        for i in range(self.win_size[0] - 2):
+            self.window.addstr(i + 1, 0, inner)
+
+        self.window.refresh()
+
 if __name__ == '__main__':
     TICK = 0.5
     SIZE = (50, 50)
     GROWTH = 3
-    snake = Snake(SIZE, GROWTH)
     previous = 'up'
 
-    snake.display()
+    with keyboard.Events() as events, SnakeDisplay(SIZE, GROWTH) as snake:
 
-    with keyboard.Events() as events:
         t_i = time.perf_counter()
 
         while ~snake.collision():
             event = events.get(TICK)
 
             if event is not None:
-                previous = KEYMAP[event]
+                if event.key == keyboard.Key.esc:
+                    break
+                elif event.key in KEYMAP:
+                    previous = KEYMAP[event.key]
 
             if (time.perf_counter() - t_i) > TICK:
                 t_i = time.perf_counter()
                 snake.move(previous)
-                snake.display()
+                snake.update_display(debug=True)
 
     print('GAME OVER')
     input("Press the <ENTER> key to continue...")

@@ -1,18 +1,18 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
-!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
-!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
-!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
-!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	/3f0ea94c/
-GROWTH	snake/snake.py	/^    GROWTH = 3$/;"	v
-KEYMAP	snake/snake.py	/^KEYMAP = {'':'up', '':'down', '':'left', '':'right'}$/;"	v
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+GROWTH	snake/snake.py	/^    GROWTH = 3$/;"	v	class:SnakeDisplay
+KEYMAP	snake/snake.py	/^KEYMAP = {$/;"	v
+List	snake/snake.py	/^from typing import List, Tuple$/;"	i
 OPair	snake/snake.py	/^OPair = Tuple[int, int]$/;"	v
-SIZE	snake/snake.py	/^    SIZE = (50, 50)$/;"	v
+SIZE	snake/snake.py	/^    SIZE = (50, 50)$/;"	v	class:SnakeDisplay
 Snake	snake/snake.py	/^class Snake:$/;"	c
-TICK	snake/snake.py	/^    TICK = 0.5$/;"	v
+SnakeDisplay	snake/snake.py	/^class SnakeDisplay:$/;"	c
+TICK	snake/snake.py	/^    TICK = 0.5$/;"	v	class:SnakeDisplay
+Tuple	snake/snake.py	/^from typing import List, Tuple$/;"	i
 __author__	snake/snake.py	/^__author__ = 'John Evans'$/;"	v
 __author__	tests/test_input.py	/^__author__ = 'John Evans'$/;"	v
 __copyright__	snake/snake.py	/^__copyright__ = 'Copyright 2020 John Evans'$/;"	v
@@ -21,7 +21,10 @@ __credits__	snake/snake.py	/^__credits__ = ['John Evans']$/;"	v
 __credits__	tests/test_input.py	/^__credits__ = ['John Evans']$/;"	v
 __email__	snake/snake.py	/^__email__ = 'thejevans@gmail.com'$/;"	v
 __email__	tests/test_input.py	/^__email__ = 'thejevans@gmail.com'$/;"	v
-__init__	snake/snake.py	/^    def __init__(self, size: OPair, growth: int) -> None:$/;"	m	class:Snake
+__enter__	snake/snake.py	/^    def __enter__(self) -> Snake:$/;"	m	class:SnakeDisplay	file:
+__exit__	snake/snake.py	/^    def __exit__(self, type, value, traceback) -> None:$/;"	m	class:SnakeDisplay	file:
+__init__	snake/snake.py	/^    def __init__(self, size: OPair, growth: int) -> None:$/;"	m	class:SnakeDisplay
+__init__	snake/snake.py	/^    def __init__(self, size: OPair, growth: int, window: curses.window$/;"	m	class:Snake
 __license__	snake/snake.py	/^__license__ = 'Apache License 2.0'$/;"	v
 __license__	tests/test_input.py	/^__license__ = 'Apache License 2.0'$/;"	v
 __maintainer__	snake/snake.py	/^__maintainer__ = 'John Evans'$/;"	v
@@ -30,19 +33,34 @@ __status__	snake/snake.py	/^__status__ = 'Development'$/;"	v
 __status__	tests/test_input.py	/^__status__ = 'Development'$/;"	v
 __version__	snake/snake.py	/^__version__ = '0.0.1'$/;"	v
 __version__	tests/test_input.py	/^__version__ = '0.0.1'$/;"	v
+author	setup.py	/^    author="John Evans",$/;"	v
+author_email	setup.py	/^    author_email="thejevans@gmail.com",$/;"	v
+classifiers	setup.py	/^    classifiers=[$/;"	v
 collision	snake/snake.py	/^    def collision(self) -> bool:$/;"	m	class:Snake
-display	snake/snake.py	/^    def display(self) -> None:$/;"	m	class:Snake
+curses	snake/snake.py	/^import curses$/;"	i
+curses	tests/test_input.py	/^import curses$/;"	i
+deque	snake/snake.py	/^from collections import deque$/;"	i
+description	setup.py	/^    description="python implementation of snake",$/;"	v
 eat	snake/snake.py	/^    def eat(self) -> None:$/;"	m	class:Snake
-event	snake/snake.py	/^            event = events.get(TICK)$/;"	v
+event	tests/test_input.py	/^            event = events.get()$/;"	v
+init_display	snake/snake.py	/^    def init_display(self) -> None:$/;"	m	class:SnakeDisplay
 inverse_snake	snake/snake.py	/^    def inverse_snake(self) -> List[OPair]:$/;"	m	class:Snake
+keyboard	snake/snake.py	/^from pynput import keyboard$/;"	i
+keyboard	tests/test_input.py	/^from pynput import keyboard$/;"	i
 long_description	setup.py	/^    long_description = fh.read()$/;"	v
+long_description	setup.py	/^    long_description=long_description,$/;"	v
+long_description_content_type	setup.py	/^    long_description_content_type="text\/markdown",$/;"	v
 move	snake/snake.py	/^    def move(self, direction: str) -> None:$/;"	m	class:Snake
-previous	snake/snake.py	/^                previous = KEYMAP[event]$/;"	v
-previous	snake/snake.py	/^    previous = 'up'$/;"	v
-rlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
-snake	snake/snake.py	/^    snake = Snake(SIZE, GROWTH)$/;"	v
-t_i	snake/snake.py	/^                t_i = time.perf_counter()$/;"	v
-t_i	snake/snake.py	/^        t_i = time.perf_counter()$/;"	v
-timeout	tests/test_input.py	/^        timeout = 1$/;"	v
-wlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
-xlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
+name	setup.py	/^    name="snake-thejevans",$/;"	v
+packages	setup.py	/^    packages=setuptools.find_packages(),$/;"	v
+previous	snake/snake.py	/^    previous = 'up'$/;"	v	class:SnakeDisplay
+product	snake/snake.py	/^from itertools import product$/;"	i
+random	snake/snake.py	/^import random$/;"	i
+setuptools	setup.py	/^import setuptools$/;"	i
+stdscr	tests/test_input.py	/^    stdscr = curses.initscr()$/;"	v
+sys	tests/test_input.py	/^import sys$/;"	i
+time	snake/snake.py	/^import time$/;"	i
+time	tests/test_input.py	/^import time$/;"	i
+update_display	snake/snake.py	/^    def update_display(self, debug: bool = False) -> None:$/;"	m	class:Snake
+url	setup.py	/^    url="https:\/\/github.com\/thejevans\/tetris",$/;"	v
+version	setup.py	/^    version="0.0.1",$/;"	v

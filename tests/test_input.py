@@ -12,11 +12,30 @@ Docstring
 """
 
 import sys
-import select
+from pynput import keyboard
 import time
+import curses
 
 if __name__ == '__main__':
-    while True:
-        timeout = 1
-        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)
-        print(rlist)
+    stdscr = curses.initscr()
+    curses.noecho()
+    curses.cbreak()
+    stdscr.keypad(True)
+
+    stdscr.clear()
+    stdscr.addstr(1, 0, 'Press ESC to quit...')
+    stdscr.addstr(0, 0, 'Key: ')
+    with keyboard.Events() as events:
+        while True:
+            event = events.get()
+            if event.key == keyboard.Key.esc:
+                break
+            stdscr.move(0, 5)
+            stdscr.clrtoeol()
+            stdscr.addstr(event.key.__repr__())
+            stdscr.refresh()
+
+    curses.nocbreak()
+    stdscr.keypad(False)
+    curses.echo()
+    curses.endwin()
