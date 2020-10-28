@@ -87,22 +87,23 @@ class Snake:
             else:
                 self.window.addstr(' '*10)
 
-        self.window.move(0, self.win_size[1]//2)
-        self.window.addstr(str(self.score))
+        score = f'SCORE: {self.score}'
+        self.window.move(0, self.win_size[1]//2 - len(score)//2)
+        self.window.addstr(score)
 
-        self.window.move(self.size[1] - self.food[1] - 1, self.food[0] + 1)
+        self.window.move(self.size[1] - self.food[1], self.food[0] + 1)
         self.window.addch('o')
 
         for x, y in self.to_remove:
-            self.window.move(self.size[1] - y - 1, x + 1)
+            self.window.move(self.size[1] - y, x + 1)
             self.window.addch(' ')
 
         self.to_remove = []
 
-        self.window.move(self.size[1] - self.head[1] - 1, self.head[0] + 1)
+        self.window.move(self.size[1] - self.head[1], self.head[0] + 1)
         self.window.addch('O')
 
-        self.window.move(self.size[1] - self.tail[0][1] - 1, self.tail[0][0] + 1)
+        self.window.move(self.size[1] - self.tail[0][1], self.tail[0][0] + 1)
         self.window.addch('*')
 
         self.window.refresh()
@@ -143,14 +144,13 @@ class Snake:
         """
         if self.head in self.tail:
             return True
-        if not (0 < self.head[0] < self.size[0]):
+        if not 0 <= self.head[0] < self.size[0]:
             return True
-        if not (0 < self.head[1] < self.size[1]):
+        if not 0 <= self.head[1] < self.size[1]:
             return True
 
         if self.head == self.food:
             self.eat()
-            return True
 
         return False
 
@@ -176,6 +176,15 @@ class Snake:
             if (x, y) not in self.tail and [x, y] != self.head:
                 inverse.append((x, y))
         return inverse
+
+    def game_over(self) -> None:
+        """Function info...
+
+        More function info...
+        """
+        self.window.move(self.win_size[0]//2, self.win_size[1]//2 - 5)
+        self.window.addstr('GAME OVER!')
+        self.window.refresh()
 
 class SnakeDisplay:
     """Class info...
@@ -255,7 +264,7 @@ class SnakeDisplay:
 
 if __name__ == '__main__':
     TICK = 0.0625
-    SIZE = (50, 25)
+    SIZE = (100, 50)
     GROWTH = 3
     previous = 'up'
 
@@ -265,17 +274,23 @@ if __name__ == '__main__':
 
         while not snake.collision():
             event = events.get(TICK)
+            update = False
 
             if event is not None:
                 if event.key == keyboard.Key.esc:
                     break
-                elif event.key in KEYMAP:
-                    previous = KEYMAP[event.key]
+                if event.key in KEYMAP:
+                    if previous != KEYMAP[event.key]:
+                        previous = KEYMAP[event.key]
+                        update = True
 
             if (time.perf_counter() - t_i) > TICK:
+                update = True
+            
+            if update:
                 t_i = time.perf_counter()
                 snake.move(previous)
-                snake.update_display(debug=True)
-
-    print('GAME OVER')
-    input("Press the <ENTER> key to continue...")
+                snake.update_display()
+        
+        snake.game_over()
+        time.sleep(2)

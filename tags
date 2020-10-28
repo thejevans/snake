@@ -8,7 +8,7 @@ GROWTH	snake/snake.py	/^    GROWTH = 3$/;"	v	class:SnakeDisplay
 KEYMAP	snake/snake.py	/^KEYMAP = {$/;"	v
 List	snake/snake.py	/^from typing import List, Tuple$/;"	i
 OPair	snake/snake.py	/^OPair = Tuple[int, int]$/;"	v
-SIZE	snake/snake.py	/^    SIZE = (50, 25)$/;"	v	class:SnakeDisplay
+SIZE	snake/snake.py	/^    SIZE = (100, 50)$/;"	v	class:SnakeDisplay
 Snake	snake/snake.py	/^class Snake:$/;"	c
 SnakeDisplay	snake/snake.py	/^class SnakeDisplay:$/;"	c
 TICK	snake/snake.py	/^    TICK = 0.0625$/;"	v	class:SnakeDisplay
@@ -43,6 +43,7 @@ deque	snake/snake.py	/^from collections import deque$/;"	i
 description	setup.py	/^    description="python implementation of snake",$/;"	v
 eat	snake/snake.py	/^    def eat(self) -> None:$/;"	m	class:Snake
 event	tests/test_input.py	/^            event = events.get()$/;"	v
+game_over	snake/snake.py	/^    def game_over(self) -> None:$/;"	m	class:Snake
 init_display	snake/snake.py	/^    def init_display(self) -> None:$/;"	m	class:SnakeDisplay
 inverse_snake	snake/snake.py	/^    def inverse_snake(self) -> List[OPair]:$/;"	m	class:Snake
 keyboard	snake/snake.py	/^from pynput import keyboard$/;"	i
