@@ -8,7 +8,7 @@ GROWTH	snake/snake.py	/^    GROWTH = 3$/;"	v	class:SnakeDisplay
 KEYMAP	snake/snake.py	/^KEYMAP = {$/;"	v
 List	snake/snake.py	/^from typing import List, Tuple$/;"	i
 OPair	snake/snake.py	/^OPair = Tuple[int, int]$/;"	v
-SIZE	snake/snake.py	/^    SIZE = (100, 50)$/;"	v	class:SnakeDisplay
+SIZE	snake/snake.py	/^    SIZE = (50, 25)$/;"	v	class:SnakeDisplay
 Snake	snake/snake.py	/^class Snake:$/;"	c
 SnakeDisplay	snake/snake.py	/^class SnakeDisplay:$/;"	c
 TICK	snake/snake.py	/^    TICK = 0.0625$/;"	v	class:SnakeDisplay
@@ -59,6 +59,7 @@ product	snake/snake.py	/^from itertools import product$/;"	i
 random	snake/snake.py	/^import random$/;"	i
 setuptools	setup.py	/^import setuptools$/;"	i
 stdscr	tests/test_input.py	/^    stdscr = curses.initscr()$/;"	v
+sys	snake/snake.py	/^import sys$/;"	i
 sys	tests/test_input.py	/^import sys$/;"	i
 time	snake/snake.py	/^import time$/;"	i
 time	tests/test_input.py	/^import time$/;"	i

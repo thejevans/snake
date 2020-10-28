@@ -8,5 +8,11 @@ To run:
 python3 ./snake/snake.py
 ```
 
+or
+
+```console
+python3 ./snake/snake.py <width> <height>
+```
+
 Arrow keys to move
 Esc key to exit

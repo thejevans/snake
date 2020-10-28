@@ -16,6 +16,8 @@ from typing import List, Tuple
 from pynput import keyboard
 from collections import deque
 from itertools import product
+
+import sys
 import time
 import random
 import curses
@@ -264,7 +266,9 @@ class SnakeDisplay:
 
 if __name__ == '__main__':
     TICK = 0.0625
-    SIZE = (100, 50)
+    SIZE = (50, 25)
+    if len(sys.argv) == 3:
+        SIZE = (int(sys.argv[1]), int(sys.argv[2]))
     GROWTH = 3
     previous = 'up'
 
