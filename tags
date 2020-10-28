@@ -26,8 +26,9 @@ collision	snake/snake.py	/^    def collision(self) -> bool:$/;"	m	class:Snake
 display	snake/snake.py	/^    def display(self) -> None:$/;"	m	class:Snake
 eat	snake/snake.py	/^    def eat(self) -> None:$/;"	m	class:Snake
 event	snake/snake.py	/^            event = events.get(TICK)$/;"	v
+inverse_snake	snake/snake.py	/^    def inverse_snake(self) -> List[OPair]:$/;"	m	class:Snake
 long_description	setup.py	/^    long_description = fh.read()$/;"	v
-move	snake/snake.py	/^    def move(self, direction: str) -> bool:$/;"	m	class:Snake
+move	snake/snake.py	/^    def move(self, direction: str) -> None:$/;"	m	class:Snake
 previous	snake/snake.py	/^                previous = KEYMAP[event]$/;"	v
 previous	snake/snake.py	/^    previous = 'up'$/;"	v
 snake	snake/snake.py	/^    snake = Snake(SIZE, GROWTH)$/;"	v
