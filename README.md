@@ -14,5 +14,11 @@ or
 python3 ./snake/snake.py <width> <height>
 ```
 
+or on macos
+
+```console
+./dist/snake <width> <height>
+```
+
 Arrow keys to move
 Esc key to exit
