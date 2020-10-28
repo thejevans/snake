@@ -21,7 +21,6 @@ import sys
 import time
 import random
 import curses
-import queue
 
 OPair = Tuple[int, int]
 
@@ -278,12 +277,8 @@ if __name__ == '__main__':
         t_i = time.perf_counter()
 
         while not snake.collision():
-            event = None
-            try:
-                event = events.get(TICK)
-            except queue.Empty:
-                pass
-
+            event = events.get(TICK)
+            
             update = False
 
             if event is not None:

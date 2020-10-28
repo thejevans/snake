@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pynput = "==1.6.8"
 pyinstaller = "*"
+pynput = "*"
 
 [requires]
 python_version = "3.8"

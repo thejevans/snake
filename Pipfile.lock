@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f45cacf0b95cac7a1e41618e6bc13292c1614d7f9a61f5f2d85afa71b034b907"
+            "sha256": "94f8b7a83e0df46afb860958af7e78037c6ce1701a078e510eefab1071195ec7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -47,12 +47,12 @@
         },
         "pynput": {
             "hashes": [
-                "sha256:42d6d58abe401a4c98ea04e443e61f74b6b0f97672f42042f566c68700ad0c65",
-                "sha256:68c1863d6a1520b44b6a915e866cbfa1b8d127aef9289f25183c93e28ee5049a",
-                "sha256:dffcf42299aa25248d1a508b14f988b3a55aad8afbf42dfa3a8f259cd96bb15b"
+                "sha256:452e1f23ed1c2e85e61b2daedc8b6a5481a696b1ed1b98ef0ab164038a104adf",
+                "sha256:5a5598bfb14322eff980ac6ca820635fce9028faa4f64a8e1581243aaf6785ee",
+                "sha256:b2b96cec8411a940a7f73da6965f13927d03d46fb5105c5bc63ed04f29b2b8f0"
             ],
             "index": "pypi",
-            "version": "==1.6.8"
+            "version": "==1.7.1"
         },
         "pyobjc-core": {
             "hashes": [
