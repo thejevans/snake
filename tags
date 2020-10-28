@@ -14,14 +14,22 @@ SIZE	snake/snake.py	/^    SIZE = (50, 50)$/;"	v
 Snake	snake/snake.py	/^class Snake:$/;"	c
 TICK	snake/snake.py	/^    TICK = 0.5$/;"	v
 __author__	snake/snake.py	/^__author__ = 'John Evans'$/;"	v
+__author__	tests/test_input.py	/^__author__ = 'John Evans'$/;"	v
 __copyright__	snake/snake.py	/^__copyright__ = 'Copyright 2020 John Evans'$/;"	v
+__copyright__	tests/test_input.py	/^__copyright__ = 'Copyright 2020 John Evans'$/;"	v
 __credits__	snake/snake.py	/^__credits__ = ['John Evans']$/;"	v
+__credits__	tests/test_input.py	/^__credits__ = ['John Evans']$/;"	v
 __email__	snake/snake.py	/^__email__ = 'thejevans@gmail.com'$/;"	v
+__email__	tests/test_input.py	/^__email__ = 'thejevans@gmail.com'$/;"	v
 __init__	snake/snake.py	/^    def __init__(self, size: OPair, growth: int) -> None:$/;"	m	class:Snake
 __license__	snake/snake.py	/^__license__ = 'Apache License 2.0'$/;"	v
+__license__	tests/test_input.py	/^__license__ = 'Apache License 2.0'$/;"	v
 __maintainer__	snake/snake.py	/^__maintainer__ = 'John Evans'$/;"	v
+__maintainer__	tests/test_input.py	/^__maintainer__ = 'John Evans'$/;"	v
 __status__	snake/snake.py	/^__status__ = 'Development'$/;"	v
+__status__	tests/test_input.py	/^__status__ = 'Development'$/;"	v
 __version__	snake/snake.py	/^__version__ = '0.0.1'$/;"	v
+__version__	tests/test_input.py	/^__version__ = '0.0.1'$/;"	v
 collision	snake/snake.py	/^    def collision(self) -> bool:$/;"	m	class:Snake
 display	snake/snake.py	/^    def display(self) -> None:$/;"	m	class:Snake
 eat	snake/snake.py	/^    def eat(self) -> None:$/;"	m	class:Snake
@@ -31,6 +39,10 @@ long_description	setup.py	/^    long_description = fh.read()$/;"	v
 move	snake/snake.py	/^    def move(self, direction: str) -> None:$/;"	m	class:Snake
 previous	snake/snake.py	/^                previous = KEYMAP[event]$/;"	v
 previous	snake/snake.py	/^    previous = 'up'$/;"	v
+rlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
 snake	snake/snake.py	/^    snake = Snake(SIZE, GROWTH)$/;"	v
 t_i	snake/snake.py	/^                t_i = time.perf_counter()$/;"	v
 t_i	snake/snake.py	/^        t_i = time.perf_counter()$/;"	v
+timeout	tests/test_input.py	/^        timeout = 1$/;"	v
+wlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
+xlist	tests/test_input.py	/^        rlist, wlist, xlist = select.select([sys.stdin], [], [], timeout)$/;"	v
