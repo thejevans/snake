@@ -143,9 +143,9 @@ class Snake:
         """
         if self.head in self.tail:
             return True
-        if ~(0 < self.head[0] < self.size[0]):
+        if not (0 < self.head[0] < self.size[0]):
             return True
-        if ~(0 < self.head[1] < self.size[1]):
+        if not (0 < self.head[1] < self.size[1]):
             return True
 
         if self.head == self.food:
@@ -174,7 +174,7 @@ class Snake:
         inverse = []
         for x, y in product(range(self.size[0]), range(self.size[1])):
             if (x, y) not in self.tail and [x, y] != self.head:
-                inverse.append(x, y)
+                inverse.append((x, y))
         return inverse
 
 class SnakeDisplay:
@@ -254,8 +254,8 @@ class SnakeDisplay:
         self.window.refresh()
 
 if __name__ == '__main__':
-    TICK = 0.5
-    SIZE = (50, 50)
+    TICK = 0.0625
+    SIZE = (50, 25)
     GROWTH = 3
     previous = 'up'
 
@@ -263,7 +263,7 @@ if __name__ == '__main__':
 
         t_i = time.perf_counter()
 
-        while ~snake.collision():
+        while not snake.collision():
             event = events.get(TICK)
 
             if event is not None:

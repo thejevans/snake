@@ -8,10 +8,10 @@ GROWTH	snake/snake.py	/^    GROWTH = 3$/;"	v	class:SnakeDisplay
 KEYMAP	snake/snake.py	/^KEYMAP = {$/;"	v
 List	snake/snake.py	/^from typing import List, Tuple$/;"	i
 OPair	snake/snake.py	/^OPair = Tuple[int, int]$/;"	v
-SIZE	snake/snake.py	/^    SIZE = (50, 50)$/;"	v	class:SnakeDisplay
+SIZE	snake/snake.py	/^    SIZE = (50, 25)$/;"	v	class:SnakeDisplay
 Snake	snake/snake.py	/^class Snake:$/;"	c
 SnakeDisplay	snake/snake.py	/^class SnakeDisplay:$/;"	c
-TICK	snake/snake.py	/^    TICK = 0.5$/;"	v	class:SnakeDisplay
+TICK	snake/snake.py	/^    TICK = 0.0625$/;"	v	class:SnakeDisplay
 Tuple	snake/snake.py	/^from typing import List, Tuple$/;"	i
 __author__	snake/snake.py	/^__author__ = 'John Evans'$/;"	v
 __author__	tests/test_input.py	/^__author__ = 'John Evans'$/;"	v
