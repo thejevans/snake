@@ -209,7 +209,10 @@ class SnakeDisplay:
             size:
             growth:
         """
-        self.win_size = (size[1] + 2, size[0] + 2)
+        if size is not None:
+            self.win_size = (size[1] + 2, size[0] + 2)
+        else:
+            self.win_size = (-1, -1)
         self.size = size
         self.growth = growth
         self.window = None
@@ -224,11 +227,20 @@ class SnakeDisplay:
             
         """
         self.window = curses.initscr()
+        height, width = self.window.getmaxyx()
+        
+        height -= 1
+
         curses.noecho()
         curses.cbreak()
         curses.curs_set(0)
         self.window.keypad(True)
         self.window.clear()
+
+        if not 0 < self.win_size[0] < height or not 0 < self.win_size[1] < width:
+            self.win_size = (height, width)
+            self.size = (width - 2, height - 2)
+
         self.init_display()
         self.snake = Snake(self.size, self.growth, self.window)
         return self.snake
@@ -266,7 +278,7 @@ class SnakeDisplay:
 
 if __name__ == '__main__':
     TICK = 0.0625
-    SIZE = (50, 25)
+    SIZE = None
     if len(sys.argv) == 3:
         SIZE = (int(sys.argv[1]), int(sys.argv[2]))
     GROWTH = 3
